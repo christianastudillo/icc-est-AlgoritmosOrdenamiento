@@ -1,15 +1,18 @@
 import java.util.Scanner;
+import java.util.Arrays;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         MetodoOrdenamiento mo = new MetodoOrdenamiento();
         int[] arreglo = null;
+
         while (true) {
             System.out.println("\nMenú Principal:");
             System.out.println("1. Ingresar un arreglo");
             System.out.println("2. Ordenar arreglo");
             System.out.println("0. Salir");
             int opcion = leerOpcion(scanner, 0, 2);  
+
             switch (opcion) {
                 case 1:
                     arreglo = mo.crearArreglo(scanner);
@@ -32,24 +35,28 @@ public class App {
                         System.out.println("2. No");
                         boolean verPasos = leerOpcion(scanner, 1, 2) == 1;
 
+                        // Crear una copia del arreglo original antes de ordenar
+                        int[] copiaArreglo = Arrays.copyOf(arreglo, arreglo.length);
+
                         switch (metodo) {
                             case 1:
-                                arreglo = mo.sortBySeleccion(arreglo, ascendente, verPasos);
+                                copiaArreglo = mo.sortBySeleccion(copiaArreglo, ascendente, verPasos);
                                 break;
                             case 2:
-                                arreglo = mo.sortInserccion(arreglo, verPasos);
+                                copiaArreglo = mo.sortInserccion(copiaArreglo, verPasos);
                                 break;
                             case 3:
-                                arreglo = mo.sortByBubble(arreglo, ascendente, verPasos);
+                                copiaArreglo = mo.sortByBubble(copiaArreglo, ascendente, verPasos);
                                 break;
                             case 4:
-                                arreglo = mo.sortBubbleAva(arreglo, verPasos);
+                                copiaArreglo = mo.sortBubbleAva(copiaArreglo, verPasos);
                                 break;
                             default:
                                 System.out.println("Método inválido.");
                         }
 
-                        mo.printArreglo(arreglo);
+                        // Imprimir el arreglo ordenado (copia)
+                        mo.printArreglo(copiaArreglo);
                     } else {
                         System.out.println("Por favor, ingrese un arreglo primero.");
                     }
