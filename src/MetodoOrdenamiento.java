@@ -14,15 +14,25 @@ public class MetodoOrdenamiento {
                     indice = j;
                 }
             }
+            
+            // Mostrar los valores que se están comparando
+
+            if (verPasos) {
+                System.out.println(" ");
+                System.out.print("  Arreglo: " + Arrays.toString(arreglo));
+                
+                System.out.print("  Iteración " + (i + 1) + ": valor a: " + arreglo[i] + " con valor b: " + arreglo[indice]);
+                System.out.println(" ");
+            }
+
             // Intercambio
             int aux = arreglo[indice];
             arreglo[indice] = arreglo[i];
             arreglo[i] = aux;
 
-            if (verPasos) {
-                System.out.println("Iteración " + (i + 1) + ": Intercambio de " + arreglo[i] + " con " + aux);
-                System.out.println("Arreglo: " + Arrays.toString(arreglo));
-            }
+            // if (verPasos) {                
+            //     System.out.println("  Arreglo: " + Arrays.toString(arreglo));
+            // }
         }
         return arreglo;
     }
@@ -34,16 +44,25 @@ public class MetodoOrdenamiento {
         for (int i = 1; i < tamanio; i++) {
             int aux = arreglo[i];
             int j = i - 1;
+
+            // Mostrar los valores que se están comparando
+            if (verPasos) {
+                System.out.println(" ");
+
+                System.out.print("  Arreglo: " + Arrays.toString(arreglo));
+                System.out.print("  Iteración " + i + ": valor a: " + aux + " con valor b: " + arreglo[j]);
+                System.out.println(" ");
+            }
+
             while (j >= 0 && arreglo[j] > aux) {
                 arreglo[j + 1] = arreglo[j];
                 j--;
             }
             arreglo[j + 1] = aux;
 
-            if (verPasos) {
-                System.out.println("Iteración " + i + ": Insertado " + aux + " en la posición " + (j + 1));
-                System.out.println("Arreglo: " + Arrays.toString(arreglo));
-            }
+            // if (verPasos) {
+            //     System.out.print("  Arreglo: " + Arrays.toString(arreglo));
+            // }
         }
         return arreglo;
     }
@@ -55,15 +74,27 @@ public class MetodoOrdenamiento {
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1 - i; j++) {
                 if ((ascendente && arreglo[j] > arreglo[j + 1]) || (!ascendente && arreglo[j] < arreglo[j + 1])) {
+                    // Mostrar los valores que se están comparando
+                    if (verPasos) {
+                        System.out.println(" ");
+
+
+                        System.out.print("  Iteración " + i + ": " + Arrays.toString(arreglo));
+                        System.out.print("  Iteración " + i + ", Comparando: valor a: " + arreglo[j] + " con valor b: " + arreglo[j + 1]);
+                        System.out.println(" ");
+                    }
+
+                    // Intercambiar los valores
                     int aux = arreglo[j];
                     arreglo[j] = arreglo[j + 1];
                     arreglo[j + 1] = aux;
                 }
             }
 
-            if (verPasos) {
-                System.out.println("Iteración " + i + ": " + Arrays.toString(arreglo));
-            }
+            // if (verPasos) {
+                
+            //     System.out.print("  Iteración " + i + ": " + Arrays.toString(arreglo));
+            // }
         }
         return arreglo;
     }
@@ -76,6 +107,15 @@ public class MetodoOrdenamiento {
         for (int i = 0; i < n; i++) {
             intercambio = false;
             for (int j = 0; j < n - 1 - i; j++) {
+                // Mostrar los valores que se están comparando
+                if (verPasos) {
+                    System.out.println(" ");
+
+                    System.out.print("  Iteración " + i + ": " + Arrays.toString(arreglo));
+                    System.out.print("  Iteración " + i + ", Comparando: valor a: " + arreglo[j] + " con valor b: " + arreglo[j + 1]);
+                    System.out.println(" ");
+                }
+                
                 if (arreglo[j] > arreglo[j + 1]) {
                     int aux = arreglo[j];
                     arreglo[j] = arreglo[j + 1];
@@ -87,9 +127,9 @@ public class MetodoOrdenamiento {
                 break;
             }
 
-            if (verPasos) {
-                System.out.println("Iteración " + i + ": " + Arrays.toString(arreglo));
-            }
+            // if (verPasos) {
+            //     System.out.print("  Iteración " + i + ": " + Arrays.toString(arreglo));
+            // }
         }
         return arreglo;
     }
@@ -132,6 +172,8 @@ public class MetodoOrdenamiento {
     }
 
     public void printArreglo(int[] arreglo) {
+        System.out.println(" ");
         System.out.println("Arreglo ordenado: " + Arrays.toString(arreglo));
+        System.out.println(" ");
     }
 }

@@ -4,21 +4,22 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         MetodoOrdenamiento mo = new MetodoOrdenamiento();
-        int[] arreglo = null;
-
+        int[] arregloOriginal = null;
+        
         while (true) {
             System.out.println("\nMenú Principal:");
             System.out.println("1. Ingresar un arreglo");
             System.out.println("2. Ordenar arreglo");
             System.out.println("0. Salir");
             int opcion = leerOpcion(scanner, 0, 2);  
-
+            
             switch (opcion) {
                 case 1:
-                    arreglo = mo.crearArreglo(scanner);
+                    arregloOriginal = mo.crearArreglo(scanner);
                     break;
                 case 2:
-                    if (arreglo != null) {
+                    if (arregloOriginal != null) {
+                        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);  // Crear una copia
                         System.out.println("Elija un método de ordenamiento:");
                         System.out.println("1. Selección");
                         System.out.println("2. Inserción");
@@ -35,34 +36,30 @@ public class App {
                         System.out.println("2. No");
                         boolean verPasos = leerOpcion(scanner, 1, 2) == 1;
 
-                        // Crear una copia del arreglo original antes de ordenar
-                        int[] copiaArreglo = Arrays.copyOf(arreglo, arreglo.length);
-
                         switch (metodo) {
                             case 1:
-                                copiaArreglo = mo.sortBySeleccion(copiaArreglo, ascendente, verPasos);
+                                arreglo = mo.sortBySeleccion(arreglo, ascendente, verPasos);
                                 break;
                             case 2:
-                                copiaArreglo = mo.sortInserccion(copiaArreglo, verPasos);
+                                arreglo = mo.sortInserccion(arreglo, verPasos);
                                 break;
                             case 3:
-                                copiaArreglo = mo.sortByBubble(copiaArreglo, ascendente, verPasos);
+                                arreglo = mo.sortByBubble(arreglo, ascendente, verPasos);
                                 break;
                             case 4:
-                                copiaArreglo = mo.sortBubbleAva(copiaArreglo, verPasos);
+                                arreglo = mo.sortBubbleAva(arreglo, verPasos);
                                 break;
                             default:
                                 System.out.println("Método inválido.");
                         }
 
-                        // Imprimir el arreglo ordenado (copia)
-                        mo.printArreglo(copiaArreglo);
+                        mo.printArreglo(arreglo);
                     } else {
                         System.out.println("Por favor, ingrese un arreglo primero.");
                     }
                     break;
                 case 0:
-                    System.out.println("Saliendo...");
+                    System.out.println("Saliendo ");
                     scanner.close();
                     return;
                 default:
